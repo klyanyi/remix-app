@@ -9,9 +9,11 @@ import {
 
 import type { LinksFunction } from "@remix-run/cloudflare";
 import { cssBundleHref } from "@remix-run/css-bundle";
+import styles from "./tailwind.css";
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  { rel: "stylesheet", href: styles },
 ];
 
 export default function App() {
@@ -27,7 +29,8 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
-        <script type="text/javascript" src=""></script>
+        {/* fix for Cornerstone DICOM image loader */}
+        <script type="text/javascript" src=""></script> 
         <LiveReload />
       </body>
     </html>
